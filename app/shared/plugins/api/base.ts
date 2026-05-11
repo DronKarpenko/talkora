@@ -4,26 +4,26 @@ import { Configuration } from './gen'
 import type { BaseAPI } from './gen/base'
 import type { InnerAxiosError } from './errors'
 
-import { usePluginOptionsStorage } from '@/shared'
+import { getApiOptionsGetter } from '@/shared/store/plugin-options'
 
 export type ApiConstructor<T> = new (...args: ConstructorParameters<typeof BaseAPI>) => T
 
 export interface ApiOptions {
   apiBaseUrl: string
   getAccessToken: () => string
-  refreshTokens: () => Promise<void>
+  // refreshTokens: () => Promise<void>
   handleReload: () => void
-  getLanguage: () => string
+  // getLanguage: () => string
 }
 
-const OPTIONS_NOT_PROVIDED_ERROR = new Error('options not provide')
+const OPTIONS_NOT_PROVIDED_ERROR = new Error('api options are not provided')
 
 export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {
-  const optionsStorage = usePluginOptionsStorage()
-  if (!optionsStorage.getApiOptions)
+  const getApiOptions = getApiOptionsGetter()
+  if (!getApiOptions)
     throw OPTIONS_NOT_PROVIDED_ERROR
 
-  const options = optionsStorage.getApiOptions()
+  const options = getApiOptions()
 
   const conf = new Configuration({
     accessToken: options.getAccessToken,
@@ -43,9 +43,9 @@ export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {
 
   function configureRequest(config: InternalAxiosRequestConfig) {
     if (config.headers) {
-      const language = options.getLanguage()
-      if (language)
-        config.headers['Accept-Language'] = language
+      // const language = options.getLanguage()
+      // if (language)
+      //   config.headers['Accept-Language'] = language
 
       const token = options.getAccessToken()
       if (token)
@@ -91,7 +91,7 @@ export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {
     }
 
     try {
-      await options.refreshTokens()
+      // await options.refreshTokens()
 
       const newAccessToken = options.getAccessToken()
       if (newAccessToken)

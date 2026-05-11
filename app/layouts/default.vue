@@ -1,11 +1,11 @@
 ﻿<template>
   <div class='layout layout-default'>
     <header class='layout-header'>
-      <nav>
+      <nav class='nav-menu'>
         <NuxtLink to='/'>Главная</NuxtLink>
-        <NuxtLink to='/about'>About</NuxtLink>
-        <NuxtLink to='/auth/login'>Login</NuxtLink>
-        <NuxtLink to='/profile'>Profile</NuxtLink>
+        <NuxtLink to='/about'>О проекте</NuxtLink>
+        <NuxtLink to='/login'>Вход</NuxtLink>
+        <NuxtLink to='/profile'>Профиль</NuxtLink>
       </nav>
     </header>
     <main class='layout-content'>

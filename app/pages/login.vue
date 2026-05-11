@@ -9,6 +9,6 @@ definePageMeta({
     <h1>Login</h1>
     <p>Страница входа.</p>
 
-    <NuxtLink to="/">На главную</NuxtLink>
+    <NuxtLink to="/public">На главную</NuxtLink>
   </section>
 </template>

@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint'],
-  css: ['~/assets/scss/main.scss']
+  modules: ['@nuxt/eslint', '@pinia/nuxt'],
+  css: ['~/assets/scss/main.scss'],
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL || '',
+    },
+  },
 })

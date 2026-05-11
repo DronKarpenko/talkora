@@ -1,14 +1,16 @@
-﻿import axios from 'axios'
+import axios from 'axios'
 
 export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig()
+
   const instance = axios.create({
-    baseURL: '/api',
-    timeout: 10000
+    baseURL: config.public.baseUrl,
+    timeout: 10000,
   })
 
   return {
     provide: {
-      axios: instance
-    }
+      axios: instance,
+    },
   }
 })
