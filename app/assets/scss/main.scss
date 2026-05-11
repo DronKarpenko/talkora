@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #f3f4f6;
   --card: #ffffff;
   --text: #1f2937;
@@ -36,9 +36,14 @@ a {
   padding: 24px;
 }
 
-.layout-default nav {
+.nav-menu {
   display: flex;
   gap: 16px;
+}
+
+.layout-profile .nav-menu {
+  flex-direction: column;
+  gap: 10px;
 }
 
 .layout-auth {
@@ -58,8 +63,10 @@ a {
   grid-template-columns: 220px 1fr;
 }
 
-.profile-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.page-title {
+  margin: 0 0 8px;
+}
+
+.page-description {
+  margin: 0 0 20px;
 }
